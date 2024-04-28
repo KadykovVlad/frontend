@@ -1,0 +1,633 @@
+// env
+$font-family: sans-serif;
+$transition-duration: .5s;
+$border-radius: 5px;
+$hover-opacity: .7;
+
+// colors
+$success-color: #f90;
+$bg-color: #fff;
+$text-color: #2c2c2c;
+$grey-color: #9c9c9c;
+$dark-grey-color: #767575;
+$red-color: #E30613;
+$backgroud-color: $bg-color;
+$input-text-color: $text-color;
+$input-bg-color: $bg-color;
+$input-active-bg-color: $bg-color;
+$input-border-color: $grey-color;
+$input-active-border-color: $dark-grey-color;
+$input-placeholder-color: $grey-color;
+$input-radio-color: $success-color;
+$shadow-color: $grey-color;
+$error-color: $red-color;
+$btn-bg-color: $success-color;
+$btn-text-color: $bg-color;
+$anchor-color: $success-color;
+// select
+$select-bg-color: $bg-color;
+$select-text-color: $text-color;
+$select-active-option-color: $success-color;
+
+
+
+@import './kit-icons.scss';
+
+.formular {
+
+    &-wrap {
+        position: relative;
+        width: 98%;
+        max-width: 700px;
+        font-size: 10px;
+        margin: 0 auto;
+        padding: 2em;
+        box-sizing: border-box;
+        color: $text-color;
+        background-color: $backgroud-color;
+        font-family: $font-family;
+        box-shadow: 0 1px 3px 0 #9c9c9c;
+        border-radius: 5px;
+    }
+
+    &-question {
+        margin: 4em 0;
+        padding: 2em;
+        box-sizing: border-box;
+        color: $text-color;
+        box-shadow: 0 1px 3px 0 $shadow-color;
+        border-radius: $border-radius;
+        background: #fcfcfc;
+
+        transition-duration: .5s;
+
+        &-label {
+            font-family: $font-family;
+            font-size: 2.0em;
+            line-height: 1.4em;
+            font-weight: 500;
+            margin: 0;
+            cursor: pointer;
+            $text-color: #2c2c2c;
+
+            &-desc {
+                font-weight: 400;
+                font-size: 1.4em;
+                line-height: 1.45em;
+                display: block;
+                color: $dark-grey-color;
+                margin-top: 8px;
+                &-input {
+                    margin-top: 8px;
+                }
+            }
+        }
+
+        &-label + input, 
+        &-label + textarea,
+        &-label + .formular-radio,
+        &-label + .formular-checkbox,
+        &-label + .formular-datepicker,
+        &-label + .formular-select  {
+            margin-top: 23px !important;
+        }
+        &-label {
+            &-desc {
+                &.--error{
+                    color: $error-color;
+                    font-size: 16px;
+                }
+                &.--no-error {
+                    color: $text-color;
+                }
+            }
+        }
+        &.--error &-label {
+            &-desc {
+                color: $error-color;
+
+                &.--no-error {
+                    color: $text-color;
+                }
+            }
+        }
+
+        // info block
+        &-info {
+
+            &-opened {
+                cursor: pointer;
+            }
+
+            &-text {
+                font-weight: 300;
+                font-size: 16px;
+                display: block;
+            }
+
+            &-opened &-text {
+                background-image: $arrow-down-bold-icon;
+                background-size: 14px;
+                background-repeat: no-repeat;
+                background-position: right center;
+            }
+        }
+    }
+
+    &-input-group {
+        & + & {
+            margin-top: 50px;
+        }
+
+        &-right {
+            display: flex;
+            justify-content: end;
+        }
+    }
+
+    // inputs
+
+    & input[type=email].formular-input,
+    & input[type=number].formular-input,
+    & input[type=password].formular-input,
+    & input[type=search].formular-input,
+    & input[type=tel].formular-input,
+    & input[type=text].formular-input,
+    & input[type=url].formular-input,
+    & textarea.formular-input {
+        position: relative;
+        font-size: 1.6em;
+        line-height: 1.2em;
+        margin: 8px 0 0 0;
+        padding: 0.5em 0.75em;
+        height: auto;
+        box-sizing: border-box;
+        border-radius: 0;
+        width: 100%;
+        outline: 0;
+
+        border: 1px solid $input-border-color;
+        border-bottom-width: 1px;
+        font-family: $font-family;
+        color: $input-text-color;
+        background-color: $input-bg-color;
+        transition: border $transition-duration;
+        letter-spacing: .5px;
+        border-radius: $border-radius;
+        font-weight: 300;
+
+        &:focus {
+            background-color: $input-active-bg-color;
+            border-color: $input-active-border-color;
+        }
+
+        &::placeholder {
+            color: $input-placeholder-color;
+            font-weight: 100;
+        }
+    }
+
+    & textarea.formular-input {
+        resize: vertical;
+        height: 4.5em;
+        font-weight: 300;
+    }
+
+    &-radio {
+
+        &-label {
+            cursor: pointer;
+            display: flex;
+            position: relative;
+            margin: 0.5em 0;
+            font-size: 1.4em;
+            line-height: 30px;
+            font-weight: 300;
+            letter-spacing: .5px;
+        }
+
+        & input[type=radio].formular-radio-input {
+            width: 30px;
+            height: 30px;
+            color: $input-border-color;
+            opacity: 0;
+            margin: 0 0.8em 0 0;
+            padding: 0;
+            transition: border $transition-duration;
+            outline: none;
+        }
+
+        &-text {
+            display: flex;
+            align-items: center;
+            line-height: 1.1em;
+            max-width: calc(100% - 50px);
+        }
+
+        &-helper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            box-sizing: border-box;
+            border: 1px solid $input-border-color;
+
+            &::after {
+                content: "";
+                display: block;
+                width: 18px;
+                height: 18px;
+                border-radius: 100%;
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                transition: $transition-duration;
+            }
+        }
+
+        & input[type=radio].formular-radio-input:focus + &-helper {
+            border-color: $input-active-border-color;
+        }
+
+        & input[type=radio].formular-radio-input:disabled + &-helper {
+            opacity: $hover-opacity;
+
+            &::after {
+                opacity: $hover-opacity;
+            }
+        }
+
+        & input[type=radio].formular-radio-input:checked + &-helper {
+            &::after {
+                background: $input-radio-color;
+            }
+        }
+    }
+
+    &-checkbox {
+
+        &-label {
+            cursor: pointer;
+            display: flex;
+            position: relative;
+            margin: 0.5em 0;
+            font-size: 1.4em;
+            line-height: 30px;
+            font-weight: 300;
+            letter-spacing: .5px;
+        }
+
+        & input[type=checkbox].formular-checkbox-input {
+            width: 30px;
+            height: 30px;
+            color: $input-border-color;
+            opacity: 0;
+            margin: 0 0.8em 0 0;
+            padding: 0;
+            transition: border $transition-duration;
+            outline: none;
+        }
+
+        &-text {
+            display: flex;
+            align-items: center;
+            line-height: 1.1em;
+            max-width: calc(100% - 50px);
+        }
+
+        &-helper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: $border-radius;
+            box-sizing: border-box;
+            border: 1px solid $input-border-color;
+
+            &::after {
+                content: "";
+                display: block;
+                width: 18px;
+                height: 18px;
+                border-radius: $border-radius;
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                transition: $transition-duration;
+            }
+        }
+
+        & input[type=checkbox].formular-checkbox-input:focus + &-helper {
+            border-color: $input-active-border-color;
+        }
+
+        & input[type=checkbox].formular-checkbox-input:disabled + &-helper {
+            opacity: $hover-opacity;
+
+            &::after {
+                opacity: $hover-opacity;
+            }
+        }
+
+        & input[type=checkbox].formular-checkbox-input:checked + &-helper {
+            &::after {
+                background-image: $check-icon;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+    }
+
+    // btn
+    &-btn {
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        border: none;
+        box-sizing: border-box;
+        font-size: 18px;
+        line-height: 50px;
+        padding: 0 15px;
+        font-weight: 300;
+        letter-spacing: .5px;
+        border-radius: $border-radius;
+
+        transition: opacity $transition-duration;
+        font-family: $font-family;
+
+        &:hover {
+            opacity: $hover-opacity;
+        }
+
+        &.--success {
+            background-color: $btn-bg-color;
+            color: $btn-text-color;
+
+            &:disabled {
+                opacity: .5;
+                cursor: not-allowed;
+            }
+        }
+
+        &.--next {
+            padding-right: 45px;
+
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 16px;
+                top: 17px;
+                height: 16px;
+                width: 16px;
+                border-top: 1px solid;
+                border-right: 1px solid;
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    // typographic
+
+    &-bold {
+        font-style: initial;
+        font-weight: 600;
+    }
+
+    &-anchor {
+        color: $anchor-color;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    // datepicker
+    &-datepicker {
+
+        input[type=text].formular-input {
+            background-image: $calendar-icon;
+            background-size: 20px;
+            background-position: 5px center;
+            background-repeat: no-repeat;
+            padding-left: 33px;
+        }
+
+        & .dp__input {
+            border-radius: $border-radius;
+            font-family: $font-family;
+        }
+
+        & .dp__cell_inner {
+            font-weight: 100;
+            font-family: $font-family;
+        }
+
+        & .dp__active_date {
+            font-family: $font-family;
+            background-color: $btn-bg-color;
+            font-weight: 400;
+        }
+
+        & .dp__calendar_header_item {
+            font-weight: 100;
+            font-family: $font-family;
+        }
+
+        & .dp__btn {
+            font-family: $font-family;
+        }
+
+        & .dp__overlay_cell {
+            font-weight: 100;
+            font-family: $font-family;
+        }
+
+        & .dp__overlay_cell_active {
+            background-color: $btn-bg-color;
+            font-weight: 400;
+            font-family: $font-family;
+        }
+
+        & .dp__today {
+            border: 1px solid $input-active-border-color;
+        }
+
+        & .dp__menu {
+            box-shadow: 0 0 5px 1px $shadow-color;
+        }
+    }
+
+    // select
+    &-select {
+        border: none;
+
+        input[type="search"].vs__search {
+            color: $select-text-color;
+            width: 10px;
+            border: none;
+            height: 37px;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: $font-family;
+            font-size: 14px;
+            font-weight: 300;
+            background-color: $input-bg-color;
+        }
+
+        .vs--single .vs__selected {
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .vs__selected {
+            font-size: 14px;
+            font-weight: 300;
+            background-color: $select-bg-color;
+
+            @media screen and (max-width: 540px) {
+                max-width: 180px;
+            }
+        }
+
+        .-multiple .vs__selected {
+            border-color: $input-border-color;
+        }
+
+        .vs__dropdown-toggle {
+            cursor: text;
+            min-height: 37px;
+            font-weight: 300;
+            box-sizing: border-box;
+            border-color: $input-border-color;
+            background: $input-bg-color;
+        }
+
+        .vs__dropdown-option {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.55em;
+            margin: 0;
+        }
+
+        .vs__dropdown-option--highlight {
+            background: $select-active-option-color;
+            color: $select-bg-color;
+            font-weight: 400;
+        }
+
+        .vs--open .vs__dropdown-toggle{
+            border-color: $input-active-border-color;
+        }
+
+        .vs__dropdown-menu {
+            border-color: $input-active-border-color;
+        }
+
+        .vs__no-options {
+            font-size: 14px;
+            font-weight: 300;
+            color: $dark-grey-color;
+        }
+
+        &.-no-search {
+            .vs__dropdown-toggle {
+                cursor: pointer;
+            }
+
+            input[type="search"].vs__search {
+                display: none;
+            }
+        }
+    }
+
+    // readmore
+    &-readmore {
+        font-size: 16px;
+        font-weight: 100;
+        margin: 10px 0;
+
+        &-title {
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: table;
+            box-sizing: border-box;
+            padding-right: 14px;
+            position: relative;
+
+            &::after {
+                content: "";
+                display: block;
+                width: 10px;
+                height: 10px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                background-image: $arrow-down-icon;
+                position: absolute;
+                right: 0;
+                top: 9px;
+                transform: rotate(0deg);
+            }
+
+            &.--open {
+                &::after {
+                    top: 8px;
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        &-text {
+            padding: 0 15px;
+            overflow: hidden;
+            height: 0px;
+
+            &.--open {
+                height: auto;
+            }
+        }
+    }
+
+    // icons
+    &-check-icon {
+        background-image: $check-icon;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left center;
+        font-size: 1em;
+        display: inline;
+        padding: 0 10px 0 20px;
+    }
+
+    &-arrow-down-bold-icon {
+        background-image: $arrow-down-bold-icon;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left center;
+        font-size: 1em;
+        display: inline;
+        padding: 0 10px 0 10px;
+    }
+
+    // success msg
+    &-success-msg {
+        text-align: center;
+        font-size: 15px;
+        line-height: 1.45em;
+
+        span {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        &-title {
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+    }
+
+}
+
